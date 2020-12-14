@@ -71,10 +71,13 @@
               <div class="layui-form-item">
                 <label for="L_vercode" class="layui-form-label">人类验证</label>
                 <div class="layui-input-inline">
-                  <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input"  v-validate="'required|min:4'" v-model.trim="vercode">
+                  <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input"  v-validate="'required|length:4'" v-model.trim="vercode">
                 </div>
                 <div class="layui-form-mid layui-word-aux no-padding">
                   <div class="code" v-html="svgCaptcha" @click="_getCode"></div>
+                </div>
+                <div class="layui-form-mid">
+                  <div class="error">{{ errors.first('vercode') }}</div>
                 </div>
               </div>
               <div class="layui-form-item">
@@ -114,7 +117,6 @@ export default {
   },
   methods: {
     _getCode () {
-      debugger
       getCode('/getCaptcha').then(svg => {
         this.svgCaptcha = svg.data
         this._code = svg.text

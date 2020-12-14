@@ -4,3 +4,10 @@ import { request } from 'utils/request.js'
 export function getCode () {
   return request.get('/getCaptcha')
 }
+
+// 忘记密码
+export function forget (options) {
+  return request.post('/forget', {
+    ...options
+  })
+}
