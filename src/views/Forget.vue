@@ -50,20 +50,24 @@
             <form method="post">
               <div class="layui-form-item">
                 <label for="L_email" class="layui-form-label">邮箱</label>
-                <div class="layui-input-inline">
-                  <input type="text" id="L_email" name="email" required lay-verify="required" autocomplete="off" class="layui-input" v-validate="'required|email'" v-model.trim="email">
-                </div>
-                <div class="layui-form-mid error">{{ errors.first('email') }}</div>
+                <validation-provider  name="email" rules="required|email" v-slot="{errors}">
+                  <div class="layui-input-inline">
+                    <input type="text" id="L_email" name="email" required lay-verify="required" autocomplete="off" class="layui-input" v-model.trim="email">
+                  </div>
+                  <div class="layui-form-mid error">{{ errors[0] }}</div>
+                </validation-provider>
               </div>
               <div class="layui-form-item">
                 <label for="L_vercode" class="layui-form-label">人类验证</label>
-                <div class="layui-input-inline">
-                  <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input" v-validate="'required|length: 4'" v-model.trim="vercode">
-                </div>
-                <div class="layui-form-mid no-padding">
-                  <span style="color: #c00;" v-html="svgCaptcha" @click="_getCode"></span>
-                </div>
-                <div class="layui-form-mid error">{{ errors.first('vercode') }}</div>
+                <validation-provider  name="vercode" rules="required|length: 4" v-slot="{errors}">
+                  <div class="layui-input-inline">
+                    <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input" v-model.trim="vercode">
+                  </div>
+                  <div class="layui-form-mid no-padding">
+                    <span style="color: #c00;" v-html="svgCaptcha" @click="_getCode"></span>
+                  </div>
+                  <div class="layui-form-mid error">{{ errors[0] }}</div>
+                </validation-provider>
               </div>
               <div class="layui-form-item">
                 <button class="layui-btn" alert="1" lay-filter="*" lay-submit @click="submit" type="button">提交</button>
@@ -79,6 +83,7 @@
 </template>
 
 <script>
+import { ValidationProvider } from 'vee-validate'
 import { getCode, forget } from 'api/login'
 export default {
   name: 'Forget',
@@ -107,6 +112,9 @@ export default {
         console.log(data)
       })
     }
+  },
+  components: {
+    ValidationProvider
   }
 }
 </script>
