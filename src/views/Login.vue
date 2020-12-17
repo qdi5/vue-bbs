@@ -136,6 +136,7 @@ export default {
       console.log($event)
       return false
     },
+    // 获取唯一标识
     _getUUID () {
       const sid = localStorage.getItem('sid')
       // 查看本地存储里是否有验证码的唯一标识
