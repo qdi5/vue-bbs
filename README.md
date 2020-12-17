@@ -22,3 +22,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### 2020-12-17
+1、axios封装；
+2、验证码通过uuid来标识；用于后台判断验证码是否有效；

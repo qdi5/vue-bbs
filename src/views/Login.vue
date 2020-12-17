@@ -109,6 +109,7 @@
 <script>
 import { ValidationProvider } from 'vee-validate'
 import { getCode } from 'api/login'
+import { v4 as uuidv4 } from 'uuid'
 export default {
   name: 'Login',
   data () {
@@ -120,11 +121,12 @@ export default {
     }
   },
   created () {
+    this._getUUID()
     this._getCode()
   },
   methods: {
     _getCode () {
-      getCode('/getCaptcha').then(svg => {
+      getCode(this.sid).then(svg => {
         this.svgCaptcha = svg.data
         this._code = svg.text
       })
@@ -133,6 +135,17 @@ export default {
       console.log('提交事件\r\n:')
       console.log($event)
       return false
+    },
+    _getUUID () {
+      const sid = localStorage.getItem('sid')
+      // 查看本地存储里是否有验证码的唯一标识
+      if (!sid) {
+        const uuid = uuidv4()
+        localStorage.setItem('sid', uuid)
+        this.sid = uuid
+      } else {
+        this.sid = sid
+      }
     }
   },
   components: {

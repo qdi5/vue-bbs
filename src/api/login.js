@@ -1,8 +1,12 @@
-import { request } from 'utils/request.js'
+import request from 'utils/request.js'
 
 // 获取验证码
-export function getCode () {
-  return request.get('/getCaptcha')
+export function getCode (sid) {
+  return request.get('/getCaptcha', {
+    params: {
+      sid
+    }
+  })
 }
 
 // 忘记密码
