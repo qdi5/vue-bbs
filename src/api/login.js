@@ -2,7 +2,7 @@ import request from 'utils/request.js'
 
 // 获取验证码
 export function getCode (sid) {
-  return request.get('/getCaptcha', {
+  return request.get('/login/getCaptcha', {
     params: {
       sid
     }
