@@ -100,7 +100,6 @@
                 </div>
               </form>
             </validation-observer>
-            token: {{ getToken}}
           </div>
         </div>
       </div>

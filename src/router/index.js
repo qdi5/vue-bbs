@@ -24,7 +24,16 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "reg" */ '../views/Reg.vue')
+    component: () => import(/* webpackChunkName: "reg" */ '../views/Reg.vue'),
+    // 确保用户是从login页面进入注册页面的，保证注册页能获取到sid
+    beforeEnter: (to, from, next) => {
+      console.log(to, from)
+      if (from.name === 'login') {
+        next()
+      } else {
+        next('/login')
+      }
+    }
   },
   {
     path: '/forget',
