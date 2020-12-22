@@ -151,7 +151,7 @@ export default {
         const { code, token } = response
         if (code === 200) {
           this.setToken(token)
-          this.$confirm('登录成功')
+          this.$alert('登录成功')
           // setTimeout(this.$router.push.bind(this.$router, { name: 'Home' }), 1000)
         }
       })

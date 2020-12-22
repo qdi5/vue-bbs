@@ -15,11 +15,12 @@ Alert.install = (Vue) => {
     instance.isShowAlert = true
   }
 
-  Vue.prototype.$confirm = ({ cancelEvent, okEvent }) => {
+  Vue.prototype.$confirm = ({ msg, cancelEvent = function () { }, okEvent = function () {} }) => {
     instance.type = 'confirm'
+    instance.msg = msg
     instance.isShowAlert = true
-    instance.cancelEvent = cancelEvent
-    instance.okEvent = okEvent
+    instance.cancel = cancelEvent
+    instance.ok = okEvent
   }
 }
 

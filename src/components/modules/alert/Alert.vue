@@ -3,12 +3,12 @@
     <div class="alert">
       <div class="flex content">{{ msg }}</div>
       <div v-if="type === 'alert'" class="layui-btn layui-btn-normal" @click="close()">确定</div>
-      <div  v-if="type === 'confirm'">
+      <div  v-if="type === 'confirm'" class="confirm">
         <div class="layui-btn layui-btn-primary" @click="cancelEvent">取消</div>
         <div class="layui-btn layui-btn-normal" @click="okEvent">确定</div>
       </div>
     </div>
-    <div class="mask"></div>
+    <div class="mask" @click="closeMask"></div>
   </div>
 </template>
 
@@ -27,11 +27,11 @@ export default {
       type: String,
       default: 'alert'
     },
-    cancelEvent: {
+    cancel: {
       type: Function,
-      default: () => console.log('取消')
+      default: () => console.log('cancel')
     },
-    okEvent: {
+    ok: {
       type: Function,
       default: () => console.log('ok')
     }
@@ -44,6 +44,19 @@ export default {
   methods: {
     close () {
       this.isShowAlert = false
+    },
+    cancelEvent () {
+      this.cancel()
+      this.close()
+    },
+    okEvent () {
+      this.ok()
+      this.close()
+    },
+    closeMask () {
+      if (this.type === 'alert') {
+        this.close()
+      }
     }
   },
   watch: {
@@ -91,6 +104,7 @@ export default {
       }
     }
     .confirm {
+      width: 100%;
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-around;
