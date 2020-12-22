@@ -113,6 +113,7 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import { getCode, login } from 'api/login'
 import { v4 as uuidv4 } from 'uuid'
 import { mapGetters, mapMutations } from 'vuex'
+
 export default {
   name: 'Login',
   data () {
@@ -136,7 +137,6 @@ export default {
       })
     },
     async onSubmit () {
-      debugger
       const isValid = await this.$refs.loginForm.validate()
       if (!isValid) {
         return
@@ -151,6 +151,8 @@ export default {
         const { code, token } = response
         if (code === 200) {
           this.setToken(token)
+          this.$confirm('登录成功')
+          // setTimeout(this.$router.push.bind(this.$router, { name: 'Home' }), 1000)
         }
       })
     },
