@@ -152,7 +152,7 @@ export default {
         if (code === 200) {
           this.setToken(token)
           this.$alert('登录成功')
-          // setTimeout(this.$router.push.bind(this.$router, { name: 'Home' }), 1000)
+          setTimeout(this.$router.push.bind(this.$router, { name: 'Home' }), 1000)
         }
       })
     },
