@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"name": "h5c3-practice",
+			"path": "..\\h5c3-practice"
+		},
+		{
+			"name": "vue-bbs",
+			"path": "."
+		},
+		{
+			"path": "..\\study"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true,
+		"liveServer.settings.multiRootWorkspaceName": "study"
+	}
+}
