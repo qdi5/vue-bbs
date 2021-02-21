@@ -28,7 +28,8 @@ const routes = [
     // 确保用户是从login页面进入注册页面的，保证注册页能获取到sid
     beforeEnter: (to, from, next) => {
       console.log(to, from)
-      if (from.name === 'login') {
+      debugger
+      if (from.name === 'Login') {
         next()
       } else {
         next('/login')

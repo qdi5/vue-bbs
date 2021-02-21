@@ -13,7 +13,7 @@ class HttpRequest {
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       },
-      timeout: 10000
+      timeout: 1000 * 60 * 10
     }
     return config
   }
